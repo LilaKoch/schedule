@@ -4,43 +4,48 @@
 {% endblock %}
 
 {% block content %}
-    
-    <br>
-    <br>
-    <br>
-     <div class="container-fluid">
-        <div class="row">
-            <div class="col-3">
-                <a href="{% url 'university_timetable:disciplines' %}" class="btn btn-outline-dark btn-sm" role="button" >
-                        Назад 
-                </a>
-            </div>
-            <div class="col-6">Дисциплина</div>
-        </div>
-    </div>
-    <br>
-    <div class="container-fluid">
-    
-        {% block form_title %}<form action="{% url 'university_timetable:discipline' discipline.Id %}"  method="get">{%endblock%}
-            {% csrf_token %}
-            {% block form %}
-            <div class ="form-group row">            
-                <table>
-                    {% for field in form %}
-                        {{ field.errors }}
-                        <tr>
-                                <th><b> {{field.label_tag}} </b></th>
-                                <td> {{field.value}} </td>
-                                
-                        </tr>
-                        <div class="error">{{field.errors}}</div>
-                    {% endfor %}
-                </table>
-            </div>
-            {% endblock %}
-            
-            {% block buttons %}{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Дисциплина</h2>
 
-        </form>
-    </div>
+
+      <table class="table">
+    <thead>
+      <tr>
+        <th>Название дисциплины</th>
+        <th>Количество академических часов</th>
+        <th>Форма промежуточной аттестации</th>
+          <th>Преподаватели</th>
+           <th>Группы</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{discipline.Name}}</td>
+        <td>{{discipline.AcademicHours}}</td>
+        <td>{{discipline.IntermediateCertificationForm}}</td>
+          <td>{{discipline.groups}}</td>
+
+      </tr>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
+
+
+
 {% endblock%}
